@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scripts</title>
+  <style>
+    body {
+        margin: 0;
+        height: auto; 
+        min-height: 100vh; 
+        background: radial-gradient(ellipse at bottom, #000000 0%, #000000 100%);
+        position: relative;
+        font-family: Arial, sans-serif;
+        background-color: #121212;
+        color: #ffffff;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .container h1 {
+        color: #fff;
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 2.2em;
+        text-shadow: 
+            0 0 5px #fff,
+            0 0 10px #ff0000,
+            0 0 20px #ff0000;
+        letter-spacing: 1px;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 1200px;
+        padding: 30px;
+        box-sizing: border-box;
+        margin: 0 auto;
+        height: auto; 
+        overflow-y: visible;
+    }
+    body::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%; 
+        background-image: 
+            radial-gradient(1px 1px at 25% 10%, rgba(255, 255, 255, 0.9) 100%, transparent),
+            radial-gradient(1px 1px at 50% 25%, rgba(255, 255, 255, 0.9) 100%, transparent),
+            radial-gradient(1px 1px at 75% 30%, rgba(255, 255, 255, 0.9) 100%, transparent),
+            radial-gradient(1.5px 1.5px at 15% 40%, rgba(255, 255, 255, 0.9) 100%, transparent),
+            radial-gradient(1.5px 1.5px at 60% 70%, rgba(255, 255, 255, 0.9) 100%, transparent),
+            radial-gradient(1px 1px at 30% 65%, rgba(255, 255, 255, 0.9) 100%, transparent),
+            radial-gradient(1px 1px at 90% 85%, rgba(255, 255, 255, 0.9) 100%, transparent),
+            radial-gradient(1.5px 1.5px at 80% 15%, rgba(255, 255, 255, 0.9) 100%, transparent),
+            radial-gradient(1.5px 1.5px at 10% 90%, rgba(255, 255, 255, 0.9) 100%, transparent),
+            radial-gradient(1px 1px at 35% 80%, rgba(255, 255, 255, 0.9) 100%, transparent),
+            radial-gradient(1px 1px at 65% 40%, rgba(255, 255, 255, 0.9) 100%, transparent),
+            radial-gradient(1.5px 1.5px at 40% 50%, rgba(255, 255, 255, 0.9) 100%, transparent),
+            radial-gradient(2px 2px at 55% 90%, rgba(255, 255, 255, 0.9) 100%, transparent),
+            radial-gradient(2px 2px at 85% 55%, rgba(255, 255, 255, 0.9) 100%, transparent),
+            radial-gradient(2px 2px at 20% 20%, rgba(255, 255, 255, 0.9) 100%, transparent),
+            radial-gradient(2px 2px at 45% 5%, rgba(255, 255, 255, 0.9) 100%, transparent),
+            radial-gradient(2px 2px at 95% 35%, rgba(255, 255, 255, 0.9) 100%, transparent),
+            radial-gradient(2px 2px at 5% 50%, rgba(255, 255, 255, 0.9) 100%, transparent),
+            radial-gradient(2px 2px at 70% 95%, rgba(255, 255, 255, 0.9) 100%, transparent);
+        background-repeat: repeat;
+        background-size: 400px 400px;
+        animation: twinkling 40s linear infinite;
+        opacity: 0.8;
+    }
+
+    .shooting-stars {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        transform: rotate(-45deg);
+    }
+
+    .shooting-star {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 4px;
+        height: 4px;
+        background: linear-gradient(-45deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+        border-radius: 999px;
+        filter: drop-shadow(0 0 6px rgb(0, 0, 0));
+        animation: tail 3s ease-in-out infinite, shooting 3s ease-in-out infinite;
+    }
+
+    .shooting-star:nth-child(1) {
+        top: calc(50% - 200px);
+        left: calc(50% - 300px);
+        animation-delay: 1s;
+    }
+
+    .shooting-star:nth-child(2) {
+        top: calc(50% - 100px);
+        left: calc(50% - 190px);
+        animation-delay: 1.6s;
+    }
+
+    .shooting-star:nth-child(3) {
+        top: calc(50% - 50px);
+        left: calc(50% + 100px);
+        animation-delay: 2.1s;
+    }
+
+    .shooting-star:nth-child(4) {
+        top: calc(50% + 70px);
+        left: calc(50% - 250px);
+        animation-delay: 2.5s;
+    }
+
+    .nebula {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(30px);
+        opacity: 0.15;
+        background: radial-gradient(circle, rgba(0, 0, 0, 0.6) 0%, rgba(252, 70, 107, 0) 70%);
+    }
+
+    .nebula:nth-child(1) {
+        width: 300px;
+        height: 300px;
+        top: 20%;
+        left: 15%;
+        animation: float 30s infinite alternate ease-in-out;
+    }
+
+    .nebula:nth-child(2) {
+        width: 250px;
+        height: 250px;
+        top: 60%;
+        left: 75%;
+        background: radial-gradient(circle, rgba(0, 0, 0, 0.6) 0%, rgba(29, 209, 161, 0) 70%);
+        animation: float 25s infinite alternate-reverse ease-in-out;
+    }
+
+    @keyframes twinkling {
+        0% {
+            transform: translateY(0);
+        }
+        100% {
+            transform: translateY(-500px);
+        }
+    }
+
+    @keyframes pulse {
+        0% {
+            opacity: 0.2;
+        }
+        50% {
+            opacity: 0.5;
+        }
+        100% {
+            opacity: 0.2;
+        }
+    }
+
+    @keyframes tail {
+        0% {
+            width: 0;
+        }
+        30% {
+            width: 100px;
+        }
+        100% {
+            width: 0;
+        }
+    }
+
+    @keyframes shooting {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(300px);
+        }
+    }
+
+    @keyframes float {
+        0% {
+            transform: translate(0, 0);
+        }
+        50% {
+            transform: translate(-10px, 10px);
+        }
+        100% {
+            transform: translate(10px, -10px);
+        }
+    }
+
+    @media (max-width: 768px) {
+        body::before {
+            display: none; 
+        }
+
+        .shooting-stars {
+            display: none; 
+        }
+
+        .nebula {
+            display: none; 
+        }
+
+        .container {
+            padding: 10px; 
+        }
+
+        .container h1 {
+            font-size: 1.8em;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .container {
+            padding: 40px; 
+        }
+    }
+  </style>
+
+<style>
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 30px;
+      background-color: rgba(240, 149, 149, 0.8);
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      max-width: 900px;
+      width: 90%;
+      box-shadow: 
+            0 0 10px rgba(255, 0, 0, 0.7),
+            0 0 20px rgba(255, 0, 0, 0.5);
+        border: 1px solid rgba(255, 0, 0, 0.5);
+        background: rgba(255, 0, 0, 0.1);
+    }
+
+    .barra {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      background-color: #f8f9fa;
+      border-radius: 10px;
+      transition: transform 0.2s;
+      box-shadow: 
+            0 0 10px rgba(255, 0, 0, 0.7),
+            0 0 20px rgba(255, 0, 0, 0.5);
+        border: 1px solid rgba(255, 0, 0, 0.5);
+        background: rgba(255, 0, 0, 0.1);
+        z-index: 200;
+    }
+
+    .barra:hover {
+      transform: scale(1.02);
+    }
+
+    label {
+        font-weight: bold;
+        color: #ffffff;
+        max-width: 200px;
+        margin-right: 20px; 
+    }
+
+    .input-button-container {
+        display: flex;
+        align-items: center;
+        flex-grow: 1;
+        gap: 0; /* Sin espacio entre input y botón */
+    }
+
+    input[type="text"] {
+        flex-grow: 1; 
+        min-width: 0; 
+        padding: 8px;
+        border: 2px solid #ddd;
+        border-radius: 5px 0 0 5px; /* Borde redondeado solo a la izquierda */
+        background-color: white;
+        font-size: 1em;
+        color: #cacaca;
+        margin-right: 0; /* Sin margen derecho */
+    }
+
+    input[readonly] {
+        cursor: default;
+        user-select: text;
+        -webkit-user-select: text;
+        -moz-user-select: text;
+        -ms-user-select: text;
+        background-color: #f0f0f0;
+        box-shadow: 
+            0 0 10px rgba(255, 0, 0, 0.7),
+            0 0 20px rgba(255, 0, 0, 0.5);
+        border: 1px solid rgba(255, 0, 0, 0.5);
+        background: rgba(255, 0, 0, 0.1);
+    }
+
+    input[readonly]:focus {
+        outline: none;
+        border-color: #00ff15;
+    }
+
+    button {
+        padding: 8px 15px;
+        border-radius: 0 5px 5px 0; /* Borde redondeado solo a la derecha */
+        color: #ffffff;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        text-shadow: 
+            0 0 5px #fff,
+            0 0 10px #ff0000,
+            0 0 20px #ff0000;
+        box-shadow: 
+            0 0 10px rgba(255, 0, 0, 0.7),
+            0 0 20px rgba(255, 0, 0, 0.5);
+        border: 1px solid rgba(255, 0, 0, 0.5);
+        border-left: none; /* Sin borde izquierdo para unirse al input */
+        background: rgba(255, 0, 0, 0.1);
+    }
+
+    button:hover {
+      background-color: #ff0000;
+    }
+
+    button:active {
+      background-color: #ff7b00;
+    }
+  </style>
+</head>
+<body>
+    ㅤ
+    <div class="container">
+        <h1>Vxspot hub</h1> 
+        <div class="barra">
+          <label for="10">Vxspot hub</label> ㅤ ㅤ ㅤ ㅤ
+          <div class="input-button-container">
+            <input type="text" id="10" value='En progreso' readonly>
+            <button onclick="copiarTexto('10')">Copiar</button>
+          </div>
+        </div>
+    </div>
+    ㅤ ㅤ
+  <div class="container">
+    <h1>Scripts Comunes</h1> 
+    <div class="barra">
+      <label for="1">W azure</label> ㅤ ㅤ ㅤ ㅤ
+      <div class="input-button-container">
+        <input type="text" id="1" value='loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/3b2169cf53bc6104dabe8e19562e5cc2.lua"))()' readonly>
+        <button onclick="copiarTexto('1')">Copiar</button>
+      </div>
+    </div>
+    <div class="barra">
+      <label for="2">Xero hub</label> ㅤ ㅤ ㅤ ㅤ
+      <div class="input-button-container">
+        <input type="text" id="2" value='loadstring(game:HttpGet("https://raw.githubusercontent.com/Xero2409/XeroHub/refs/heads/main/main.lua"))()' readonly>
+        <button onclick="copiarTexto('2')">Copiar</button>
+      </div>
+    </div>
+    <div class="barra">
+      <label for="3">hoho hub</label> ㅤ ㅤ ㅤ ㅤ
+      <div class="input-button-container">
+        <input type="text" id="3" value='loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI"))()' readonly>
+        <button onclick="copiarTexto('3')">Copiar</button>
+      </div>
+    </div>
+    <div class="barra">
+        <label for="4">Speed</label> ㅤ ㅤ ㅤ ㅤ
+        <div class="input-button-container">
+          <input type="text" id="4" value='loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua",true))()' readonly>
+          <button onclick="copiarTexto('4')">Copiar</button>
+        </div>
+      </div>
+      <div class="barra">
+        <label for="5">Kaitun</label> ㅤ ㅤ ㅤ ㅤ
+        <div class="input-button-container">
+          <input type="text" id="5" value='-- Max level, godhuman, cdk, sgt
+        script_key = "" -- premium only, u can leave it blank if ur not
+        getgenv().Shutdown = false -- Turn on if u are farming bulk accounts
+        getgenv().Configs = {
+            ["Team"] = "Marines",
+            ["Gun Farm"] = false, -- Fast farm level, but farming melee is slow
+            ["FPS Boost"] = {
+                ["Enable"] = false,
+                ["FPS Cap"] = 30,
+            },
+            ["Farm Boss Drops"] = {
+                ["Enable"] = false,
+                ["When x2 Exp Expired"] = false
+            },
+            ["Hop"] = {
+                ["Enable"] = true,
+                ["Hop Find Tushita"] = true
+            },
+            ["Auto Collect Berry"] = true,
+            ["Auto Evo Race"] = true,
+            ["Awaken Fruit"] = true,
+            ["Rainbow Haki"] = true,
+            ["Hop Player Near"] = true,
+            ["Skull Guitar"] = true,
+            ["Find Fruit"] = false, -- Will find 1m+ fruit to unlock swan door to access third sea
+            ["Cursed Dual Katana"] = true,
+            ["Switch Melee"] = true,
+            ["Eat Fruit"] = "", -- leave blank for none, put the fruit name like this example: Smoke Fruit, T-Rex Fruit, ...
+            ["Snipe Fruit"] = "", -- leave blank for none, put the fruit name like this example: Smoke Fruit, T-Rex Fruit, ...
+            ["Lock Fragment"] = 0,
+            ["Buy Stuffs"] = true -- buso, geppo, soru, ken haki, ...
+        }
+        repeat task.wait() pcall(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/Xero2409/XeroHub/refs/heads/main/kaitun.lua"))() end) until getgenv().Check_Execute' readonly>
+          <button onclick="copiarTexto('5')">Copiar</button>
+        </div>
+      </div>
+      <div class="barra">
+        <label for="6">Andepzai hub</label> ㅤ ㅤ ㅤ ㅤ
+        <div class="input-button-container">
+          <input type="text" id="6" value='repeat wait() until game:IsLoaded() and game.Players.LocalPlayer 
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/AnDepZaiHub/AnDepZaiHubBeta/refs/heads/main/AnDepZaiHubNewUpdated.lua"))()' readonly>
+          <button onclick="copiarTexto('6')">Copiar</button>
+        </div>
+      </div>
+  </div>
+  ㅤ
+
+  </div>
+
+  <script>
+    function copiarTexto(id) {
+      const input = document.getElementById(id);
+      const texto = input.value;
+
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(texto)
+          .then(() => {
+            alert('Texto copiado al portapapeles: ' + texto);
+          })
+          .catch(err => {
+            console.error('Error al copiar con navigator.clipboard: ', err);
+            seleccionarManualmente(input, texto);
+          });
+      } else {
+        seleccionarManualmente(input, texto);
+      }
+    }
+
+    function seleccionarManualmente(input, texto) {
+      input.focus();
+      input.select();
+      input.setSelectionRange(0, 99999);
+      alert('No se pudo copiar automáticamente. Texto seleccionado, presiona Ctrl+C (o Cmd+C en Mac): ' + texto);
+    }
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const labels = document.querySelectorAll(".barra label");
+      let maxWidth = 0;
+      
+      labels.forEach(label => {
+          const width = label.scrollWidth;
+          if (width > maxWidth) maxWidth = width;
+      });
+      
+      labels.forEach(label => {
+          label.style.width = `${maxWidth}px`;
+      });
+    });
+  </script>
+</body>
+</html>
